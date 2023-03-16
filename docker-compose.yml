@@ -1,0 +1,28 @@
+version : '3.7'
+
+services:
+  music_app:
+    build: .
+    ports: 
+      - "3008:3007"
+    volumes:
+      - ./:/app
+    container_name: music_app
+
+  music_db:
+    image: mysql:5.7
+    container_name: music_db
+    environment: 
+      MYSQL_USER: tungtrinh
+      MYSQL_PASSWORD: 123456
+      MYSQL_DATABASE: music_db
+      MYSQL_ROOT_PASSWORD: mysql
+    ports:
+      - "3308:3306"
+    volumes:
+      - db:/var/lib/mysql
+volumes:
+  db:
+    driver: local
+
+      
