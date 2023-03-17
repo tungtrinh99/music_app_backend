@@ -4,7 +4,14 @@
     "password": "123456",
     "database": "music_db",
     "host": "music_db",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "define": {
+      "charset": "utf8mb4",
+      "dialectOptions": {
+        "collate": "utf8mb4_general_ci"
+      },
+      "timestamps": true
+    }
   },
   "test": {
     "username": "root",

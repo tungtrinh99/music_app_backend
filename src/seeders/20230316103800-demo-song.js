@@ -13,10 +13,10 @@ module.exports = {
      * }], {});
     */
     await queryInterface.bulkInsert('Songs', [{
-      title_song: 'Chú voi con ở bản Đôn',
-      image: '123.png',
-      lyric: 'Chú voi con ở bản Đôn Chú voi con ở bản Đôn Chú voi con ở bản Đôn',
-      url_song: 'song1.url',
+      title_song: "Chú voi con ở bản Đôn",
+      image: "123.png",
+      lyric: "Chú voi con ở bản Đôn Chú voi con ở bản Đôn Chú voi con ở bản Đôn",
+      url_song: "song1.url",
       artist_id: 1,
       album_id: 1,
       category_id: 1,
