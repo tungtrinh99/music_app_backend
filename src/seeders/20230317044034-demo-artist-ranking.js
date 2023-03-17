@@ -2,7 +2,7 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  async up(queryInterface, Sequelize) {
     /**
      * Add seed commands here.
      *
@@ -12,21 +12,22 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert('Categories', [{
-      title: "Nhạc Vàng",
+    await queryInterface.bulkInsert('ArtistRankings', [{
+      artist_id: 1,
+      vote_quantity: 100,
       createdAt: new Date(),
       updatedAt: new Date()
     }], {});
   },
 
-  async down (queryInterface, Sequelize) {
+  async down(queryInterface, Sequelize) {
     /**
      * Add commands to revert seed here.
      *
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('Categories', null, {});
+    await queryInterface.bulkDelete('ArtistRankings', null, {});
 
   }
 };

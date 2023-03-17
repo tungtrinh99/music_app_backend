@@ -11,13 +11,17 @@ const db = {};
 
 let sequelize;
 if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+  sequelize = new Sequelize(process.env[config.use_env_variable], config.password, {
+    define : config.define
+``  });
 } else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
+  sequelize = new Sequelize(config.database, config.username, config.password, {
+    define : config.define
+  });
 }
 
 fs
-  .readdirSync(__dirname)
+  .readdirSync(__dirname, 'utf8')
   .filter(file => {
     return (
       file.indexOf('.') !== 0 &&
