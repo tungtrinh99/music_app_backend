@@ -13,10 +13,10 @@ services:
       APP_PORT: ${APP_PORT:-3002}
       DB_CONNECTION: mysql
       DB_HOST: music_db
-      DB_PORT: 3306
       DB_DATABASE: music_db
       DB_USERNAME: tungtrinh
       DB_PASSWORD: 123456
+      NODE_ENV: development
     command: /bin/sh -c "npm install && npm start"
   music_db:
     image: mysql:5.7
