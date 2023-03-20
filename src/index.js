@@ -7,6 +7,7 @@ const artistController = require('./controllers/artist.controller');
 const songController = require('./controllers/song.controller');
 const albumController = require('./controllers/album.controller');
 const categoryController = require('./controllers/category.controller');
+const userController = require('./controllers/user.controller');
 dotenv.config();
 // support parse of json in HTTP POST
 app.use(bodyParser.json());
@@ -43,6 +44,13 @@ app.get('/categories/:category', categoryController.show)
 app.delete('/categories/:category', categoryController.destroy)
 app.post('/categories', categoryController.store)
 app.put('/categories/:category', categoryController.update)
+
+// users
+app.get('/users', userController.index)
+app.get('/users/:user', userController.show)
+app.delete('/users/:user', userController.destroy)
+app.post('/users', userController.store)
+app.put('/users/:user', userController.update)
 
 
 app.listen(port, () => {
