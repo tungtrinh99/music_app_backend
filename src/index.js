@@ -6,6 +6,7 @@ const port = process.env.APP_PORT;
 const artistController = require('./controllers/artist.controller');
 const songController = require('./controllers/song.controller');
 const albumController = require('./controllers/album.controller');
+const categoryController = require('./controllers/category.controller');
 dotenv.config();
 // support parse of json in HTTP POST
 app.use(bodyParser.json());
@@ -35,6 +36,14 @@ app.get('/albums/:album', albumController.show)
 app.delete('/albums/:album', albumController.destroy)
 app.post('/albums', albumController.store)
 app.put('/albums/:album', albumController.update)
+
+// categories
+app.get('/categories', categoryController.index)
+app.get('/categories/:category', categoryController.show)
+app.delete('/categories/:category', categoryController.destroy)
+app.post('/categories', categoryController.store)
+app.put('/categories/:category', categoryController.update)
+
 
 app.listen(port, () => {
     console.log(`Example app listening on port localhost:${port}`)
