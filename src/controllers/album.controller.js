@@ -1,8 +1,8 @@
-const { Song } = require('../models');
+const { Album } = require('../models');
 module.exports.index = async (req, res) => {
     try {
-        const song = await Song.findAll();
-        res.send({ "items": song })
+        const album = await Album.findAll();
+        res.send({ "items": album })
     } catch (err) {
         res.status(500).send(err);
     }
@@ -10,19 +10,19 @@ module.exports.index = async (req, res) => {
 
 module.exports.show = async (req, res) => {
     try {
-        const songId = req.params.song;
-        const song = await Song.findOne({
+        const albumId = req.params.album;
+        const album = await Album.findOne({
             where: {
-                id: songId
+                id: albumId
             }
         });
-        if (!song) {
+        if (!album) {
             res.status(400).send({
-                message: "Song not found!"
+                message: "Album not found!"
             });
             return;
         }
-        res.send(song)
+        res.send(album)
     } catch (err) {
         res.status(500).send(err);
     }
@@ -30,17 +30,17 @@ module.exports.show = async (req, res) => {
 
 module.exports.destroy = async (req, res) => {
     try {
-        const songId = req.params.song;
-        const song = await Song.findByPk(songId);
-        if (!song) {
+        const albumId = req.params.album;
+        const album = await Album.findByPk(albumId);
+        if (!album) {
             res.status(400).send({
                 message: "Not found!"
             });
             return;
         }
-        await song.destroy({
+        await Album.destroy({
             where: {
-                id: songId
+                id: albumId
             }
         });
         res.send({ message: "Delete success!" });
@@ -59,16 +59,11 @@ module.exports.store = async (req, res) => {
             return;
         }
         const body = {
-            title_song: req.body.title_song,
-            lyric: req.body.lyric,
-            url_song: req.body.url_song,
-            artist_id: req.body.artist_id,
-            album_id: req.body.album_id,
-            category_id: req.body.category_id,
-            release_date: req.body.release_date,
+            album_name: req.body.album_name,
+            artist_id: req.body.artist_id
         }
-        const song = await Song.create(body);
-        res.send(song);
+        const album = await Album.create(body);
+        res.send(album);
     } catch (err) {
         res.status(500).send(err.message || 'error server');
     }
@@ -76,11 +71,11 @@ module.exports.store = async (req, res) => {
 
 module.exports.update = async (req, res) => {
     try {
-        const songId = req.params.song;
-        const song = await Song.findByPk(songId);
-        if (!song) {
+        const albumId = req.params.album;
+        const album = await Album.findByPk(albumId);
+        if (!album) {
             res.status(400).send({
-                message: "Song not found!"
+                message: "Album not found!"
             });
             return;
         }
@@ -91,17 +86,12 @@ module.exports.update = async (req, res) => {
             return;
         }
         const body = {
-            title_song: req.body.title_song,
-            lyric: req.body.lyric,
-            url_song: req.body.url_song,
-            artist_id: req.body.artist_id,
-            album_id: req.body.album_id,
-            category_id: req.body.category_id,
-            release_date: req.body.release_date,
+            album_name: req.body.album_name,
+            artist_id: req.body.artist_id
         }
-        await Song.update(body, {
+        await Album.update(body, {
             where: {
-                id: songId
+                id: albumId
             }
         });
         res.send({

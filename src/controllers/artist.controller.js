@@ -16,6 +16,12 @@ module.exports.show = async (req, res) => {
                 id: artistId
             }
         });
+        if (!artist) {
+            res.status(400).send({
+                message: "Artist not found!"
+            });
+            return;
+        }
         res.send(artist)
     } catch (err) {
         res.status(500).send(err);
