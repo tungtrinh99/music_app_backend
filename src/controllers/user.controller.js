@@ -1,4 +1,6 @@
 const { User } = require('../models');
+const { validationResult } = require('express-validator');
+
 module.exports.index = async (req, res) => {
     try {
         const user = await User.findAll();
@@ -57,6 +59,10 @@ module.exports.store = async (req, res) => {
             });
 
             return;
+        }
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
         }
         const body = {
             username: req.body.username,
